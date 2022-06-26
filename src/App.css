@@ -14,6 +14,8 @@
   border-width: 2px;
   border-color: black;
   border-style: solid;
+  background-image: url("mars-background.jpg");
+  background-size: contain;
 }
 .Row {
   display: flex;
@@ -22,7 +24,7 @@
   justify-content: center;
 }
 .Black-Cell {
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -34,7 +36,6 @@
 }
 
 .White-Cell {
-  background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,7 +47,7 @@
 }
 
 .Highlighted-Cell {
-  background-color: bisque;
+  background-color: rgba(10, 255, 255, 0.5);
 }
 
 .Divider {
