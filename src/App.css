@@ -12,9 +12,9 @@
 }
 
 .Board {
-  border-width: 2px;
+  /* border-width: 2px;
   border-color: black;
-  border-style: solid;
+  border-style: solid; */
   background-image: url("mars-background.jpg");
   background-size: cover;
   background-position-x: 50%;
