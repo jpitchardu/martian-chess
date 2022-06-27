@@ -12,7 +12,7 @@ export type Vertice = {
   row: Row;
   col: Col;
   edges: Edge[];
-  piece: Piece;
+  piece?: Piece;
 };
 
 export type Edge = {
@@ -118,22 +118,27 @@ export const getEdgeDirection = (
   return "d";
 };
 
-export const getPossiblePaths = (vertice: Vertice): Edge[] => {
-  const paths = vertice.edges
-    .filter((edge) => vertice.piece.allowedMovements.includes(edge.direction))
+export const getPossiblePaths = ({
+  piece,
+  row,
+  col,
+  edges,
+}: Vertice): Edge[] => {
+  if (!piece) return [];
+
+  const paths = edges
+    .filter((edge) => piece.allowedMovements.includes(edge.direction))
     .filter((edge) => edge.target.piece === undefined);
 
   const nextPaths = paths.flatMap((path) => {
-    const xDifference =
-      COLS.indexOf(path.target.col) - COLS.indexOf(vertice.col);
+    const xDifference = COLS.indexOf(path.target.col) - COLS.indexOf(col);
 
-    const yDifference =
-      ROWS.indexOf(path.target.row) - ROWS.indexOf(vertice.row);
+    const yDifference = ROWS.indexOf(path.target.row) - ROWS.indexOf(row);
 
     return getPossiblePathsWithDifferences(
       path.target,
-      vertice.piece.allowedMovements,
-      vertice.piece.movementLength - 1,
+      piece.allowedMovements,
+      piece.movementLength - 1,
       xDifference,
       yDifference
     );
@@ -278,4 +283,15 @@ const getMovementLengthFromValue = (value: number) => {
   if (value === 2) return 2;
   if (value === 1) return 1;
   return 7; // Just the biggest number possible
+};
+
+export const movePieceToCoordinates = (
+  piece: Piece,
+  { row, col }: { row: Row; col: Col },
+  board: Board
+) => {
+  board[row][col].piece = piece;
+  board[piece.row][piece.col].piece = undefined;
+
+  return { ...board };
 };
