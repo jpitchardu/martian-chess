@@ -81,6 +81,7 @@ const Cell = ({
   );
 
   const className = [
+    "Cell",
     colorClass,
     isCellHighlighted ? "Highlighted-Cell" : "",
   ].join(" ");
