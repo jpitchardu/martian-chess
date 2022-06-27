@@ -2,6 +2,10 @@ import _ from "lodash";
 import React, { useContext } from "react";
 import "./App.css";
 
+import Rover from "./Rover_Small.png";
+import Alien from "./Alien_Small.png";
+import UFO from "./UFO_Small.png";
+
 import * as Game from "./Game";
 
 type GameContextType = {
@@ -77,19 +81,35 @@ const Cell = ({
   );
 
   const className = [
+    "Cell",
     colorClass,
     isCellHighlighted ? "Highlighted-Cell" : "",
   ].join(" ");
 
   return (
     <div className={className} onClick={highlightCells}>
-      {vertice.piece && <Piece piece={vertice.piece} />}
+      {vertice.piece && (
+        <Piece piece={vertice.piece} isTopPlayer={+vertice.row <= 4} />
+      )}
     </div>
   );
 };
 
-const Piece = ({ piece }: { piece: Game.Piece }) => {
-  return <div className="Piece">{piece.value}</div>;
+const Piece = ({
+  piece,
+  isTopPlayer,
+}: {
+  piece: Game.Piece;
+  isTopPlayer: boolean;
+}) => {
+  return (
+    <div className="Space">
+      <img
+        className={isTopPlayer ? "Top-Player" : ""}
+        src={piece.value === 1 ? Rover : piece.value === 2 ? Alien : UFO}
+      />
+    </div>
+  );
 };
 
 const Board = ({ board }: { board: Game.Board }) => {

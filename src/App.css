@@ -6,44 +6,43 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 100vh;
+  max-width: 400px;
+  margin: auto;
 }
 
 .Board {
-  border-width: 2px;
+  /* border-width: 2px;
   border-color: black;
-  border-style: solid;
+  border-style: solid; */
   background-image: url("mars-background.jpg");
-  background-size: contain;
+  background-size: cover;
+  background-position-x: 50%;
+  width: 100%;
 }
+
 .Row {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  width: 100%;
 }
-.Black-Cell {
-  background-color: rgba(0, 0, 0, 0.5);
+
+.Cell {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  max-height: 100px;
-  max-width: 100px;
   height: 100px;
-  width: 100px;
+  width: 25%;
+}
+
+.Black-Cell {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .White-Cell {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  max-height: 100px;
-  max-width: 100px;
-  height: 100px;
-  width: 100px;
 }
 
 .Highlighted-Cell {
@@ -56,16 +55,12 @@
   border-style: solid;
 }
 
-.Piece {
-  max-height: 33px;
-  max-width: 33px;
-  height: 33px;
-  width: 33px;
-  border-radius: 50%;
+.Space {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: cadetblue;
-  color: white;
+}
+
+.Top-Player {
+  filter: hue-rotate(145deg);
 }
